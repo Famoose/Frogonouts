@@ -25,9 +25,9 @@
                 },
                 {
                     "name": "MoveByRelease",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "156f1f3d-bec4-4a20-8beb-ead76332a530",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -101,26 +101,70 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "fe075f02-781a-4fb8-923f-2d25c210d15f",
-                    "path": "<Touchscreen>/Press",
+                    "name": "Mouse",
+                    "id": "43da1b18-4266-46db-8adb-8eec5fb499c4",
+                    "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Touch",
+                    "groups": "",
                     "action": "MoveByRelease",
-                    "isComposite": false,
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "414b4d0c-0901-42c8-b18a-820891551887",
+                    "name": "modifier",
+                    "id": "41003dc1-ea42-441e-aeb3-3984c7fb5100",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "MoveByRelease",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "19e22313-852c-49ff-a13d-fd98e1375035",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "InvertVector2",
+                    "groups": "Keyboard&Mouse",
+                    "action": "MoveByRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Touch",
+                    "id": "09fe6d73-54d9-4055-a9bd-333370e5d086",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveByRelease",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "f2a69cf3-44a8-413b-a8bd-c04cbc57929d",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "MoveByRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "a17e6c27-73ef-4671-8707-4a08358d2b3d",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "",
+                    "processors": "InvertVector2",
+                    "groups": "Touch",
+                    "action": "MoveByRelease",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

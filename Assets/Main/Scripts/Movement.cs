@@ -18,35 +18,40 @@ public class Movement : MonoBehaviour
     [SerializeField] private Ball _jumpBall;
     
     //input system
-    private Vector2 move;
+    private Vector2 _move;
+
+    private bool _isGrounded = true;
+    private Throttle _projectionThrottle = new Throttle();
+    private bool _isDraging = false;
+    private Vector2 _startPosition = Vector2.zero;
+    private float _normalizationFactor;
 
     private Rigidbody rb;
     private Projection _projection;
-    public bool isGrounded;
-    private Throttle _projectionThrottle = new Throttle();
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         _projection = GetComponent<Projection>();
+        _normalizationFactor = Math.Min(Screen.width / 4f, Screen.height / 4f);
+        Debug.Log(_normalizationFactor);
     }
 
     private void OnCollisionEnter(Collision other)
     {
         //todo: check if collision is ground
-        isGrounded = true;
+        _isGrounded = true;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
 
     private void OnMove(InputValue value)
     {
-        if(!isGrounded) return;
-        move = value.Get<Vector2>();
-        if (move.magnitude > 0.1f)
+        if(!_isGrounded) return;
+        _move = value.Get<Vector2>();
+        if (_move.magnitude > 0.1f)
         {
             _projectionThrottle.Run(DoTrajectory, 0.05f);
-            //DoTrajectory();
         }
         else
         {
@@ -66,23 +71,61 @@ public class Movement : MonoBehaviour
     {
         var transform1 = this.transform;
         var jumpVelocity = Vector3.zero;
-        jumpVelocity += transform1.forward * move.y * jumpForceForward;
-        jumpVelocity += transform1.right * move.x * jumpForceForward;
+        jumpVelocity += transform1.forward * _move.y * jumpForceForward;
+        jumpVelocity += transform1.right * _move.x * jumpForceForward;
         jumpVelocity += transform1.up * jumpForceUp;
         return jumpVelocity;
-
     }
 
     private void OnJump()
     {
-        if (isGrounded)
+        DoJump();
+    }
+
+    private void OnMoveByRelease(InputValue value)
+    {
+        if(!_isGrounded) return;
+
+        var pos = value.Get<Vector2>();
+        if (pos != Vector2.zero)
+        {
+            if (_startPosition == Vector2.zero)
+            {
+                _startPosition = value.Get<Vector2>();
+            }
+            else
+            {
+                _move = (value.Get<Vector2>() - _startPosition) / _normalizationFactor;
+                if(_move.magnitude > 1f) _move.Normalize();
+            }
+        
+            if (_move.magnitude > 0.1f)
+            {
+                _projectionThrottle.Run(DoTrajectory, 0.05f);
+            }
+            else
+            {
+                _projection.HideTrajectory();
+            }
+        }
+        else
+        {
+            if (_move.magnitude > 0.1f)
+            {
+                DoJump();
+            }
+            _move = Vector2.zero;
+            _startPosition = Vector2.zero;
+        }
+    }
+
+    private void DoJump()
+    {
+        if (_isGrounded)
         {
             _projection.HideTrajectory();
-            isGrounded = false;
+            _isGrounded = false;
             var jumpVelocity = GetJumpVelocity();
-            //get move and set rotation
-            var rot = Quaternion.LookRotation(jumpVelocity);
-            rb.MoveRotation(new Quaternion(0, rot.y, 0, 0));
             rb.AddForce(jumpVelocity, ForceMode.Impulse);
         }
     }
