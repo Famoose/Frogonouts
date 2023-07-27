@@ -1,4 +1,4 @@
-const cacheName = "DefaultCompany-Frogonouts-0.0.7";
+const cacheName = "DefaultCompany-Frogonouts-0.0.8";
 const contentToCache = [
     "Build/frogonouts.loader.js",
     "Build/frogonouts.framework.js.gz",
