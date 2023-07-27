@@ -13,16 +13,12 @@ public class Movement : MonoBehaviour
     //variables
     [SerializeField] private float jumpForceUp = 5f;
     [SerializeField] private float jumpForceForward = 5f;
-    [SerializeField] private Vector3 _projectionOffset = Vector3.zero;
-
-    [SerializeField] private Ball _jumpBall;
     
     //input system
     private Vector2 _move;
 
     private bool _isGrounded = true;
     private Throttle _projectionThrottle = new Throttle();
-    private bool _isDraging = false;
     private Vector2 _startPosition = Vector2.zero;
     private float _normalizationFactor;
 
@@ -64,16 +60,15 @@ public class Movement : MonoBehaviour
         var transform1 = this.transform;
         //make a jump force based on the jump force variable player forward and up vector
         var jumpVelocity = GetJumpVelocity();
-        _projection.SimulateTrajectory(_jumpBall, transform1.position + _projectionOffset, jumpVelocity);
+        _projection.CalculatePosition(transform1.position, jumpVelocity);
     }
 
     private Vector3 GetJumpVelocity()
     {
-        var transform1 = this.transform;
         var jumpVelocity = Vector3.zero;
-        jumpVelocity += transform1.forward * _move.y * jumpForceForward;
-        jumpVelocity += transform1.right * _move.x * jumpForceForward;
-        jumpVelocity += transform1.up * jumpForceUp;
+        jumpVelocity += Vector3.forward * _move.y * jumpForceForward;
+        jumpVelocity += Vector3.right * _move.x * jumpForceForward;
+        jumpVelocity += Vector3.up * jumpForceUp;
         return jumpVelocity;
     }
 
@@ -126,7 +121,17 @@ public class Movement : MonoBehaviour
             _projection.HideTrajectory();
             _isGrounded = false;
             var jumpVelocity = GetJumpVelocity();
+            
+            // Project the jumpVelocity onto the plane defined by the Y-axis
+            Vector3 projectedJumpVelocity = Vector3.ProjectOnPlane(jumpVelocity, Vector3.up);
+
+            // Get the rotation quaternion to look in the direction of the projected jumpVelocity
+            Quaternion rotation = Quaternion.LookRotation(projectedJumpVelocity, Vector3.up);
+            
+            rb.MoveRotation(rotation);
             rb.AddForce(jumpVelocity, ForceMode.Impulse);
+            //rotate player in direction of jump but only on the x axis
+            
         }
     }
 }
