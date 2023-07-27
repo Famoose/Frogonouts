@@ -1,5 +1,6 @@
 ﻿name: Create Release 🚀
-
+permissions:
+  contents: write
 on:
   push:
     # Sequence of patterns matched against refs/tags
@@ -77,7 +78,7 @@ jobs:
 
       #Upload to Pages (For WebGL builds)
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4
         if: matrix.targetPlatform == 'WebGL'
         with:
           branch: gh-pages # The branch the action should deploy to.
