@@ -27,34 +27,16 @@ jobs:
           - WebGL               # Build for WebGL
 
     steps:
-      # Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
-      
-      # Git LFS
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-
-      - name: Restore LFS cache
-        uses: actions/cache@v3
-        id: lfs-cache
         with:
-          path: .git/lfs
-          key: ${{ runner.os }}-${{ matrix.targetPlatform }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+          lfs: true
           
-      - name: Git LFS Pull
-        run: |
-          git lfs pull
-          git add .
-          git reset --hard
-
       # Cache
       - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
+          key: Library-${{ matrix.targetPlatform }}
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
