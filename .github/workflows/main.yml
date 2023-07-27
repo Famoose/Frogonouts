@@ -65,7 +65,7 @@ jobs:
           # UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           # UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
-          unityVersion: $${{ matrix.unityVersion }}
+          unityVersion: ${{ matrix.unityVersion }}
           targetPlatform:  ${{ matrix.targetPlatform }}
           buildName: ${{ env.PROJECT_NAME }}
 
