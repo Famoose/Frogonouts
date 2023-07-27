@@ -171,7 +171,99 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2577278115207652713}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0276bf9e-aaac-4ed9-bd85-b0b2feead7e3
+    m_ActionName: Player/Move
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2577278115207652713}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e7932cbc-6a2b-4573-b66a-080eec43636b
+    m_ActionName: Player/Jump
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2577278115207652713}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: OnMoveByRelease
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 156f1f3d-bec4-4a20-8beb-ead76332a530
+    m_ActionName: Player/MoveByRelease[/Mouse/leftButton,/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55118663-d9d8-4373-95ac-ae3f4e43a0ea
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 58a1af24-a27c-4153-aa6e-e2f0112ad70d
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 169cb8b3-123a-436c-b05b-1dc180da80e7
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9e0dea36-08d7-4784-b405-981a14368539
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: faaf1670-445c-4b21-833d-194c61b414c8
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b9cb96db-9ebb-47e5-aef3-1b6a8ce347f2
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ccfa2cba-c1ad-4af9-94c8-97888621acea
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b5e39a98-cbd9-4bdd-8b9f-dfb70e7922d0
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: da1041ab-d1ee-4259-89ad-3e6cdb816c3b
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3665b124-86a4-47e2-b506-94cc03fe245b
+    m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 91ddb25a-1be5-4bb1-bf85-3771094f9ccb
+    m_ActionName: Player/JumpByRelease[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -191,9 +283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForceUp: 5
   jumpForceForward: 5
-  _projectionOffset: {x: 0, y: 0.3, z: 0}
-  _jumpBall: {fileID: 6949228931430063955, guid: 24aef8b75c25f3346bf748fca76a7140,
-    type: 3}
 --- !u!114 &8527878767908915876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +297,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _line: {fileID: 8003038715108407684}
   _maxPhysicsFrameIterations: 100
-  _obstaclesParent: {fileID: 0}
 --- !u!120 &8003038715108407684
 LineRenderer:
   serializedVersion: 2
@@ -218,7 +306,7 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160287983354646617}
   m_Enabled: 0
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -256,7 +344,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.22203453
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
