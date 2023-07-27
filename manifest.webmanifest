@@ -1,0 +1,15 @@
+{
+    "name": "Frogonouts",
+    "short_name": "Frogonouts",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#CCCCCC",
+    "theme_color": "#fff",
+    "description": "let it jump",
+    "icons": [{
+      "src": "TemplateData/icons/unity-logo-light.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }]
+  }
