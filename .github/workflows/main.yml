@@ -22,9 +22,9 @@ jobs:
         unityVersion:
           - 2022.3.4f1
         targetPlatform:         # These are the definitions from: https://docs.unity3d.com/ScriptReference/BuildTarget.html
-          - StandaloneOSX       # Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          - StandaloneLinux64   # Build a Linux 64-bit standalone
+#          - StandaloneOSX       # Build a macOS standalone (Intel 64-bit).
+#          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+#          - StandaloneLinux64   # Build a Linux 64-bit standalone
           - WebGL               # Build for WebGL
 
     steps:
@@ -61,6 +61,11 @@ jobs:
           popd
           sudo mv build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip build/${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip
 
+      - name: Copy Web Config
+        if: matrix.targetPlatform != 'WebGL'
+        run: |
+          sudo mv deploymentAssets/web.config build/${{ matrix.targetPlatform }}/web.config
+
       - name: Compress Build
         if: matrix.targetPlatform != 'StandaloneOSX'
         run: |
@@ -68,6 +73,7 @@ jobs:
           sudo zip -r ${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip ./*
           popd
           sudo mv build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip build/${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip
+      
 
       # Upload Artifacts
       - name: Upload Artifacts
