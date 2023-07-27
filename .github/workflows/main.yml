@@ -62,7 +62,7 @@ jobs:
           sudo mv build/${{ matrix.targetPlatform }}/${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip build/${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip
 
       - name: Copy Web Config
-        if: matrix.targetPlatform != 'WebGL'
+        if: matrix.targetPlatform == 'WebGL'
         run: |
           sudo mv deploymentAssets/web.config build/${{ matrix.targetPlatform }}/web.config
 
