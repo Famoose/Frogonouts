@@ -1,9 +1,9 @@
-const cacheName = "DefaultCompany-Frogonouts-0.0.8";
+const cacheName = "DefaultCompany-Frogonouts-0.0.9";
 const contentToCache = [
     "Build/frogonouts.loader.js",
-    "Build/frogonouts.framework.js.gz",
-    "Build/frogonouts.data.gz",
-    "Build/frogonouts.wasm.gz",
+    "Build/frogonouts.framework.js.unityweb",
+    "Build/frogonouts.data.unityweb",
+    "Build/frogonouts.wasm.unityweb",
     "TemplateData/style.css"
 
 ];
