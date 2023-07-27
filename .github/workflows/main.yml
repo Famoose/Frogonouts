@@ -84,9 +84,7 @@ jobs:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/WebGL/${{ env.PROJECT_NAME }} # The folder the action should deploy.
       
-      - name: Checkout code
-        uses: actions/checkout@v3
-      # More details on usage here: https://github.com/marketplace/actions/create-release
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
