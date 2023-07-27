@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160287983354646617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.073578, y: 0.12454736, z: 50.282543}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -42,7 +42,7 @@ Transform:
   - {fileID: 5183005876602954180}
   - {fileID: 1235347793730669660}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &687777316440862707
 LODGroup:
@@ -194,7 +194,6 @@ MonoBehaviour:
   _projectionOffset: {x: 0, y: 0.3, z: 0}
   _jumpBall: {fileID: 6949228931430063955, guid: 24aef8b75c25f3346bf748fca76a7140,
     type: 3}
-  isGrounded: 0
 --- !u!114 &8527878767908915876
 MonoBehaviour:
   m_ObjectHideFlags: 0
