@@ -83,18 +83,18 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: build/WebGL/${{ env.PROJECT_NAME }} # The folder the action should deploy.
-      
+
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           draft: true
-          prerelease: false
           allowUpdates: true
-          tag_name: ${{ github.ref }}
+          tag: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           artifacts: 'build/${{ env.PROJECT_NAME }}-${{ matrix.targetPlatform }}.zip'
+          body: "todo"
           token: ${{ secrets.GITHUB_TOKEN }}
