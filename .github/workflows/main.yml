@@ -1,12 +1,10 @@
-﻿name: Release on Main 😎
+﻿name: Create Release 🚀
 
 on:
-  # This allows for manual triggering of the action
-  workflow_dispatch:
-  # This will run this action on every push to the main branch - update as required
   push:
-    branches:
-      - main
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   build-project:
@@ -15,7 +13,7 @@ jobs:
 
     # Enter in project properties here
     env:
-      PROJECT_NAME: github-karts
+      PROJECT_NAME: frogonouts
 
     strategy:
       fail-fast: false
