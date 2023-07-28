@@ -1,6 +1,8 @@
 using System;
 using Main.Scripts.Helpers;
+using Main.Scripts.Network.Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +13,7 @@ namespace Main.Scripts
         //variables
         [SerializeField] private float jumpForceUp = 5f;
         [SerializeField] private float jumpForceForward = 5f;
+        [SerializeField] private bool isLocalPlayer = false;
 
         //input system
         private Vector2 _move;
@@ -22,18 +25,33 @@ namespace Main.Scripts
 
         private Rigidbody rb;
         private Projection _projection;
-
+        
         void Start()
         {
             rb = GetComponent<Rigidbody>();
             _projection = GetComponent<Projection>();
             _normalizationFactor = Math.Min(Screen.width / 4f, Screen.height / 4f);
-            Debug.Log(_normalizationFactor);
+
+            if (isLocalPlayer)
+            {
+                Debug.Log(IsLocalPlayer);
+                try
+                {
+                    GetComponent<ClientNetworkTransform>().enabled = false;
+                    GetComponent<NetworkObject>().enabled = false;
+                    GetComponent<NetworkRigidbody>().enabled = false;
+                    rb.isKinematic = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
         }
 
         void FixedUpdate()
         {
-            if(!IsOwner) return;
+            if(!IsOwner && !isLocalPlayer) return;
             _isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.11f);
         }
 
@@ -46,12 +64,13 @@ namespace Main.Scripts
         private void OnMove(InputValue value)
         {
             if (!_isGrounded) return;
-            if (!IsOwner) return;
+            if (!IsOwner && !isLocalPlayer) return;
 
             _move = value.Get<Vector2>();
             if (_move.magnitude > 0.1f)
             {
-                _projectionThrottle.Run(DoTrajectory, 0.05f);
+                // _projectionThrottle.Run(DoTrajectory, 0.05f);
+                DoTrajectory();
             }
             else
             {
@@ -84,7 +103,7 @@ namespace Main.Scripts
         private void OnMoveByRelease(InputValue value)
         {
             if (!_isGrounded) return;
-            if (!IsOwner) return;
+            if (!IsOwner && !isLocalPlayer) return;
 
             var pos = value.Get<Vector2>();
             if (pos != Vector2.zero)
@@ -122,7 +141,7 @@ namespace Main.Scripts
 
         private void DoJump()
         {
-            if (!IsOwner) return;
+            if (!IsOwner && !isLocalPlayer) return;
 
             if (_isGrounded)
             {
