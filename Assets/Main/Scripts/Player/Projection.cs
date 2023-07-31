@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
-namespace Main.Scripts
+namespace Main.Scripts.Player
 {
     public class Projection : MonoBehaviour
     {

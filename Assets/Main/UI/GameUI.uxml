@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Main/UI/MainStyle.uss?fileID=7433441132597879392&amp;guid=11939aa47338348ffb01f305c1444126&amp;type=3#MainStyle" />
+    <Main.Scripts.ui.SafeArea>
+        <ui:VisualElement class="wrapper" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:Label tabindex="-1" text="Score:" display-tooltip-when-elided="true" name="score" class="score" style="white-space: normal; text-overflow: ellipsis;" />
+        </ui:VisualElement>
+    </Main.Scripts.ui.SafeArea>
+</ui:UXML>

@@ -4,12 +4,15 @@ using Main.Scripts.Network.Unity.Multiplayer.Samples.Utilities.ClientAuthority;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Main.Scripts
+namespace Main.Scripts.Player
 {
     public class Movement : NetworkBehaviour
     {
+        public UnityEvent<Vector2> onMoveForce;
+        
         //variables
         [SerializeField] private float jumpForceUp = 5f;
         [SerializeField] private float jumpForceForward = 5f;
@@ -61,6 +64,7 @@ namespace Main.Scripts
             if (!IsOwner && !isLocalPlayer) return;
 
             _move = value.Get<Vector2>();
+            onMoveForce?.Invoke(_move);
             if (_move.magnitude > 0.1f)
             {
                 // _projectionThrottle.Run(DoTrajectory, 0.05f);
@@ -109,6 +113,7 @@ namespace Main.Scripts
                 else
                 {
                     _move = (value.Get<Vector2>() - _startPosition) / _normalizationFactor;
+                    onMoveForce?.Invoke(_move);
                     if (_move.magnitude > 1f) _move.Normalize();
                 }
 

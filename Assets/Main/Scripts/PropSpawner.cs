@@ -29,7 +29,7 @@ namespace Main.Scripts
         private void Start()
         {
             var targetPosition = target.transform.position;
-            for (int i = 0; i < defaultCapacity; i++)
+            for (int i = 1; i < defaultCapacity; i++)
             {
                 var prop = objectPool.Get();
                 var offsetX = UnityEngine.Random.Range(-offset, offset);

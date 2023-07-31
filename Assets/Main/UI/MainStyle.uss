@@ -1,0 +1,14 @@
+@import url('project://database/Assets/Main/UI/color.uss?fileID=7433441132597879392&guid=6686bdf0cccb4bf9b7186000a4652ef2&type=3#color');
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.score {
+    border-radius: 10px;
+    border-color: bisque;
+    border-width: 4px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    font-size: 12px;
+}
