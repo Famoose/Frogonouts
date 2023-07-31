@@ -34,7 +34,6 @@ namespace Main.Scripts
 
             if (isLocalPlayer)
             {
-                Debug.Log(IsLocalPlayer);
                 try
                 {
                     GetComponent<ClientNetworkTransform>().enabled = false;
@@ -49,16 +48,11 @@ namespace Main.Scripts
             }
         }
 
-        void FixedUpdate()
-        {
-            if(!IsOwner && !isLocalPlayer) return;
-            _isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.11f);
-        }
-
         private void OnCollisionEnter(Collision other)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+            _isGrounded = true;
         }
 
         private void OnMove(InputValue value)
